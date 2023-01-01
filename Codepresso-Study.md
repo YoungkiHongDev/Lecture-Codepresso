@@ -660,3 +660,60 @@ List처럼 여러 데이터를 하나의 객체로 관리한다. List의 인덱�
 - remove(데이터): 데이터를 객체에서 제거하고 수행 결과를 참거짓으로 반환
 - removeAll(Collection객체): Collection 객체가 가진 데이터와 같은 데이터들을 모두 제거, 차집합과 동일한 기능 수행 
 - retainAll(Collection객체): 두개의 HashSet 객체에 모두 존재하는 데이터만 선택하여 남김, 교집합과 동일한 기능 수행
+
+# Spring Framework 소개
+- Rod Johnson이 개발
+- 2004년 1.0 버전 출시
+- 2014년 Spring Boot 1.0 버전 출시
+- 2017년 Spring Framework 5.0 버전 출시
+- 2020년 기준 Spring Boot 2.x 버전대 출시
+- 웹 개발만을 위한 프레임워크는 아니지만 주로 웹 애플리케이션 개발을 위해 활용
+- 게시판 같은 토이 프로젝트부터 넷플릭스 같은 대규모 웹 애플리케이션까지 개발 가능
+- 국내외 많은 기업들이 핵심 기술로 활용중
+
+# 국내 Spring Framework 채용공고 예시
+- NAVER: Java/Kotlin&Spring 기반 서비스 개발 경험 3년 이상
+- KAKAO: Java 서버 개발 경력 5년 이상 + Java Spring Framework를 이용한 서버 개발 경험
+- toss: Spring MVC, Spring Webflux, Spring Boot, Spring Cloud Gateway, Spring Cloud Config
+- LINE: Spring, Spring Boot Framework 사용 경험이 있으신 분
+- 특히, 백엔드쪽의 대다수 직군에서 요구!
+
+# Spring Framework의 장점
+- 경량화된 Java Framework
+- POJO의 사용으로 재사용 가능한 코드 개발 가능
+- DI와 AOP의 적용
+- Transaction 관리의 편의성
+- MVC 아키텍처의 지원
+- 테스트가 용이함
+- 높은 보안성
+
+## 1. 방대한 프로젝트
+- Spring은 22개 카테고리의 수백개의 프로젝트 보유
+- 대규모 웹 애플리케이션 개발 및 운영을 위한 거의 모든 기술을 제공
+
+## 2. 끊임 없는 개선
+- 최근 SW 시스템은 점점 거대해지고 복잡화
+- 더 나은 SW 시스템을 위한 다양한 기술과 아키텍처가 소개되고 있음 (마이크로서비스 아키텍처, NoSQL, 클라우드 컴퓨팅)
+- Spring은 변화하는 기술에 빠르게 대응하여 꾸준히 새로운 프로젝트를 출시함 (Spring Cloud, Spring Native, etc)
+- 어떠한 기술 변화에도 끊임없이 대응해줄거라는 개발자들의 신뢰를 받고 있음!
+
+# Spring Framework의 단점
+## 1. 높은 러닝 커브
+- Bean, DI, AOP, 객체지향 설게, 디자인 패턴 등 다양한 개념 이해가 필요함
+- Spring Framework는 엔터프라이즈급 대규모 서비스 개발을 위한 목적으로 개발됨
+- SW의 유연한 확장성을 위해 다양한 기술들이 내포되어 있음
+
+## 2. 복잡한 설정
+- 과거에 많이 나온 말 "Spring Framework는 XML 지옥이다"
+- 간단한 웹 애플리케이션 개발을 위해서도 상당한 수준의 설정이 필요 (Spring은 무겁다, 대기업에서나 쓸만하다)
+- 하지만 Spring Boot가 출시되며 이러한 문제가 해결됨 (자동화된 설정, 간편화된 의존성 관리)
+
+# Spring Boot 소개
+- Spring Framework를 보다 손쉽게 활용할 수 있게 지원하는 기술
+- 설정 및 의존성 관리, 애플리케이션 모니터링, 서버의 실행 등을 가볍고 빠르게 수행 가능
+
+# Spring Boot의 주요 기능
+- 설정 간편화를 위한 Auto Configuration
+- 의존성 관리를 위한 Starter Project
+- 배포 프로세스 간소화를 위한 Embedded WAS
+- 애플리케이션의 모니터링을 위한 Actuator
