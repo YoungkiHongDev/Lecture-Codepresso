@@ -810,3 +810,11 @@ https://www.w3schools.com/html/tryit.asp?filename=tryhtml_default
 
 # HTML 태그
 https://www.w3schools.com/tags/default.asp
+
+# HTML (Hypertext Markup Language)
+- HTML은 서로 연결되어 있고, 정보를 구조적으로 표현하는 언어다.
+- HTML은 정보를 구조적으로 표현하기 위해 Tag라는 개념을 사용한다.
+- 최상위 태그인 html을 기준으로 내부에 head와 body 태그가 위치한다.
+- head 태그는 문서의 부가정보를, body 태그는 문서의 컨텐츠를 담는다.
+- HTML의 컨텐츠는 태그로 둘러쌓이고, 브라우저가 컨텐츠를 읽어서 태그에 담긴 방식으로 사용자에게 보여준다.
+- 많은 태그가 존재하지만 사용되는 종류는 제한적이므로 모두 외울 필요는 없다.
