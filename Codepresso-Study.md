@@ -828,3 +828,30 @@ https://www.w3schools.com/tags/default.asp
 - <style> 태그 내에 CSS 코드를 삽입하여 사용
 - CSS 대상 지정에는 HTML 태그명, id, class를 이용
 - 태그명은 전체적, id는 개별적, class는 그룹에 적용할 때 자주 사용
+
+# 계층형 아키텍처
+- SW 아키텍처는 실제 개발 전 최종 SW의 모습을 설계
+- SW 아키텍처는 SW의 구조를 정의한 것, SW를 구성하는 주요 요소들과 요소들의 관계를 정의한 것
+- 이미 많은 사람이 고민했던 특정 상황의 문제 해결을 위해 일반화된 솔루션이 있음 (메신저 서비스 개발 패턴, 웹서비스 개발 패턴, 분석 시스템 개발 패턴)
+- 웹 서비스 개발에 주로 쓰이는 패턴은 SW를 3~4개 계층으로 구분 (Presentation Layer, Application Layer, Business Layer, Data Access Layer)
+- 계층 간에 호출하고 데이터를 주고 받으며 전체 웹 서비스 구성
+- Presentation Layer(@Controller): 클라이언트로부터 요청을 받아 Application Layer에 처리를 위임, Application Layer의 결과를 최종 클라이언트로 전달
+- Application Layer(@Service): 특정 목적을 위한 다양한 비즈니스 로직을 처리
+- Data Access Layer(@Repository): DB에 접근하여 데이터를 저장하거나 조회하는 역할
+
+# Spring Controller
+- 계층형 아키텍처의 Presentation Layer에 해당한다.
+- 클라이언트의 요청을 받고 Application Layer에 요청에 대한 처리를 위임한다.
+- 클라이언트에 최종적으로 응답을 하는 역할을 맡는다.
+- view: 클라이언트가 요청에 대한 응답의 결과로 보게되는 웹 페이지
+- data: 클라이언트가 요청에 대한 응답으로 받는 데이터
+- Spring Controller를 구현하기 위해서는 3개의 Annotation이 필요함
+- @Controller: 컨트롤러 역할을 하는 클래스 지정, 클래스 상단에 명시, view를 응답 (html)
+- @RestController: 컨트롤러 역할을 하는 클래스 지정, 클래스 상단에 명시, data를 응답 (문자열, 숫자, Json, xml)
+- @RequestMapping: 특정 요청을 처리하는 메소드 지정, 클래스 또는 메소드 상단에 명시
+
+# Annotation
+- Java 소스코드에 추가적인 정보를 제공하는 방법
+- @으로 시작하며 클래스, 메소드, 멤버변수, 파라미터에 부착 가능
+- 3가지 유형의 Annotation (자바 컴파일러에게 정보제공, SW툴에 의해 사용되어 코드생성 및 추가작업, 런타임 시 특정 동작 추가실행)
+- Annotation들을 Spring Framework에서 스캔하여 특정 목적으로 사용됨
