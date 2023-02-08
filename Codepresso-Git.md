@@ -94,3 +94,95 @@
 
 # 원격 저장소
 - 대표적인 웹 기반 플랫폼 서비스는 GitHub, GitLab, Bitbucket이 있다.
+
+# GitLab
+- Private 저장소 Community 버전은 무료
+- 주로 기업에서 인트라넷에 연결해서 사용하고 있다.
+
+# Git 저장소 연결 방법 1
+- GitHub 혹은 GitLab에 원격 저장소 생성
+- 컴퓨터에 작업할 폴더를 생성
+- 명령어 창 안에서 작업할 폴더로 이동
+- 원격 저장소의 Clone 주소를 복사
+- git clone [원격 저장소 주소] 명령어 입력
+
+# Git 저장소 연결 방법 2
+- GitHub 혹은 GitLab에 원격 저장소 생성
+- 컴퓨터에 작업할 폴더를 생성
+- 명령어 창 안에서 작업할 폴더로 이동
+- git init 명령어 입력
+- 원격 저장소의 Clone 주소를 복사
+- git remote add origin [원격 저장소 주소] 명령어 입력하여 저장소 연결
+- git remote -v 명령어 입력하여 연결된 저장소 확인
+
+# git 상태 확인 명령어
+- git status : 현재 폴더 내 파일의 상태 확인
+- git log : 커밋의 히스토리 확인
+- git log --help : 명령어 뒤에 help 옵션 입력 시 웹브라우저를 통해 해당 명령어의 매뉴얼 페이지가 실행됨
+- git log -u : 전체 커밋의 내용과 변경점 확인
+- git log -u [커밋ID] : 해당 커밋의 내용과 변경점 확인
+- git log -1 : 가장 최근 커밋 1개의 내용과 변경점 확인
+- git log -2 : 가장 최근 커밋 2개의 내용과 변경점 확인
+- git log --name-only : 커밋 내용과 변경점 그리고 변경된 파일명까지 확인
+- git log --oneline : 각 커밋을 간결하게 한줄씩 만들어 확인
+- git log --reverse : 가장 오래된 커밋부터 확인
+- git show [커밋ID] : 해당 커밋의 내용과 변경점 확인 (git log -u [커밋ID]와 같음)
+- git diff : 변경 코드 확인, 작업 디렉토리에서 기존 코드에서 변경된 점 확인이 가능, 변경점이 적으면 파악이 쉽고 변경점이 많으면 파악이 어려움
+
+# Commit의 히스토리
+- git log로 확인 가능
+- Commit의 아이디, 개발자 정보, 시간, 메시지 확인 가능
+- Commit의 아이디는 SHA-1 해시 알고리즘으로 만들어진다.
+- git은 해시값으로 저장소의 히스토리를 관리한다.
+
+## 작업 디렉토리의 파일 상태
+- Untracked: 변경점이 발생한 Git에 의해 관리되지 않은 파일, Staging Area에 한번도 포함되지 않음
+- Tracked: Git에 의해 관리되는 파일, Staging Area에 한번 이상 포함됨
+
+# Git CRLF Warning 로그
+- 명령어로 경고 메시지 설정을 끌 수 있다.
+- git config --global core.safecrlf false
+
+# Git 기본 플로우
+- Remote Repository의 새로운 프로젝트를 git clone으로 나의 Local Repository에 내려받는다.
+- Working Directory에 작업한다.
+- Working Directory에서 작업한 파일을 git add 한다.
+- git add한 파일이 Staging Area에 변경점으로 추가된다.
+- Staging Area의 파일을 git commit 한다.
+- Commit이 Local Repository에 저장된다.
+- Local Repository의 Commit을 git push하여 Remote Repository에 업로드된다.
+- 다른 개발자가 push한 Commit을 git pull하여 Remote Repository에서 나의 Local Repository에 내려받는다.
+
+# 커밋 되돌리기 (덮어쓰기 방식)
+- git commit --amend
+- 마지막에 반영한 최신 커밋 메시지를 변경하고 싶으면 사용, 최신 커밋 수정 가능한 에디터가 실행됨, 되돌린 것은 복구불가
+- 커밋에 추가할 변경점이 있을 때 사용, 파일을 수정 후 git add로 스테이징 영역에 추가, git commit --amend 명령어로 커밋을 생성
+
+# 커밋 되돌리기 (롤백하는 방식)
+- git revert [커밋ID]
+- 코드를 원복 (반영한 특정 코드 제거, 변경 취소, 반영한 커밋 되돌리기, 반영한 커밋 revert)
+- 새로운 Revert 커밋이 추가되지만 내용은 가장 최근 커밋을 롤백
+
+# 원격 저장소에 커밋 반영
+- git push [저장소별칭] [브랜치]
+- git push origin master
+
+# GitLab push 에러 및 해결방법
+- 유저명과 패스워드가 다를 경우 발생
+- remote: HTTP Basic: Access denied
+- fatal: Authentication faild for
+- 1. 자격 증명 관리자 실행
+- 2. Windows 자격 증명 클릭
+- 3. gitlab에 해당되는 내용을 찾아 제거 후 git push 다시시도
+
+# GitLab 팀원 등록
+- 프로젝트로 들어가서 왼쪽 메뉴에서 Settings의 Members 들어가기
+- Invite member에 협업할 사용자를 입력하고 permission으로 Developer을 선택 후 Invite 클릭
+- 다시 왼쪽 메뉴에서 Settings의 Repository 들어가기
+- Protected Branches에서 master Branch의 Allowed to push를 누르고 Developers + Maintainers 클릭하여 팀원에게 push 권한 허용
+- 팀원은 본인의 GitLab 페이지에서 협업 프로젝트가 보이고 등록되어 있는지 확인
+
+# Merge
+- git pull 시 다른 개발자가 올린 커밋이 있을 경우 발생할 수 있다.
+- 같은 파일을 작업했을 경우 수동으로 수정이 필요하다.
+- pull 완료 후 Merge를 커밋한다.
