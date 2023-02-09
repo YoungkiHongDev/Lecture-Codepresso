@@ -854,4 +854,27 @@ https://www.w3schools.com/tags/default.asp
 - Java 소스코드에 추가적인 정보를 제공하는 방법
 - @으로 시작하며 클래스, 메소드, 멤버변수, 파라미터에 부착 가능
 - 3가지 유형의 Annotation (자바 컴파일러에게 정보제공, SW툴에 의해 사용되어 코드생성 및 추가작업, 런타임 시 특정 동작 추가실행)
+- @RequestMapping은 2번째 유형인 SW툴에 의해 사용되어 코드 생성/추가 작업하는 것에 가깝다.
 - Annotation들을 Spring Framework에서 스캔하여 특정 목적으로 사용됨
+
+# @RequestMapping
+- RequestMapping은 클라이언트의 특정 요청이 오면 Spring Framework에 의해 호출된다.
+- RequestMapping이 붙은 메소드가 여러개라면?
+- Spring Framework가 URI에 맞는 메소드를 호출한다.
+
+# URI
+- Uniform Resource Locator
+- 특정한 자원에 접근하기 위한 이름 또는 주소
+- ex) https://www.naver.com
+- 웹상의 모든 자원들은 URI를 가진다. (웹페이지, 이미지, 영상)
+- Spring Contoller의 메소드는 URI에 따라 호출한다.
+- ex) RequestMapping(value = "/user")
+- URI는 계층 관계로 표현이 가능하다. ('/'로 계층을 구분)
+- /user/paid, /user/enterprise
+- URI는 중복 시 에러가 발생한다.
+
+# URI 네이밍 규약
+- 소문자를 사용한다.
+- 명사로 작성한다.
+- 두 단어 이상 연결하면 단어 사이에 '-'를 사용한다.
+- 일관성을 가지도록 작성한다.
