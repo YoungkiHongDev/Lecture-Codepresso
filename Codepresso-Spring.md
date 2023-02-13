@@ -75,6 +75,10 @@
 - @Controller: 컨트롤러 역할을 하는 클래스 지정, 클래스 상단에 명시, view를 응답 (html)
 - @RestController: 컨트롤러 역할을 하는 클래스 지정, 클래스 상단에 명시, data를 응답 (문자열, 숫자, Json, xml)
 - @RequestMapping: 특정 요청을 처리하는 메소드 지정, 클래스 또는 메소드 상단에 명시
+- Spring Contoller의 메소드는 URI에 따라 호출한다.
+- ex) RequestMapping(value = "/user")
+- URI는 계층 관계로 표현이 가능하다. ('/'로 계층을 구분)
+- /user/paid, /user/enterprise
 
 # Annotation
 - Java 소스코드에 추가적인 정보를 제공하는 방법
@@ -88,19 +92,33 @@
 - RequestMapping이 붙은 메소드가 여러개라면?
 - Spring Framework가 URI에 맞는 메소드를 호출한다.
 
-# URI
-- Uniform Resource Locator
-- 특정한 자원에 접근하기 위한 이름 또는 주소
-- ex) https://www.naver.com
-- 웹상의 모든 자원들은 URI를 가진다. (웹페이지, 이미지, 영상)
-- Spring Contoller의 메소드는 URI에 따라 호출한다.
-- ex) RequestMapping(value = "/user")
-- URI는 계층 관계로 표현이 가능하다. ('/'로 계층을 구분)
-- /user/paid, /user/enterprise
-- URI는 중복 시 에러가 발생한다.
+# @RestController
+- REST API, HTTP API를 위한 클래스를 명시한다.
+- @RestController를 붙인 클래스 내부에서 @RequestMapping을 붙인 개별 메소드들이 API가 된다.
+- @RestController를 붙인 클래스에 @RequestMapping을 붙여서 공통적으로 쓸 주소를 쓸 수 있다.
+- ex) 클래스에 /user를 매핑, 내부 메소드에 2개에 각각 /paid와 /enterprise 매핑 시 /user/paid와 /user/enterprise가 된다.
 
-# URI 네이밍 규약
-- 소문자를 사용한다.
-- 명사로 작성한다.
-- 두 단어 이상 연결하면 단어 사이에 '-'를 사용한다.
-- 일관성을 가지도록 작성한다.
+# @RequestParam (Query String)
+- Request 파라미터를 활용하는 Annotation이다.
+- name: Query String의 key와 매핑, key와 변수명이 같으면 생략 가능
+- required: 필수 여부 (true, false)
+- defaultValue: 데이터가 없을경우 설정할 기본 값
+
+# @RequestParam (Path Parameter)
+- @RequestMapping value 값으로 넣은 URI에 {}중괄호로 Path Parameter가 들어갈 곳을 표시한다.
+- 메소드 파라미터에 @PathVariable 어노테이션을 사용한다.
+- 필수 데이터가 아닌 선택적 데이터의 경우 주로 Query String을 사용한다.
+
+# Query String & Path Parameter
+1. 일반적인 추천 사항
+- 특정 자원 요청 시 Path Param 사용
+- 정렬 혹은 추가 필터링 데이터는 Query String 사용
+
+2. 다른 추천 사항
+- 필수 데이터 Path Param
+- 선택적 데이터 Query String
+- Path Param이 포함된 URI는 클라이언트가 영향을 받아서 변경 비용 높음
+- Query String은 상대적으로 편하게 확장 가능
+
+3. 조직 추천 사항
+- 회사 또는 팀마다 표준이 존재하므로 표준에 따라 개발한다.
