@@ -152,3 +152,27 @@ https://www.w3schools.com/tags/default.asp
 # Path Parameter
 - URI의 일부로 파라미터 값을 사용한다.
 - 파라미터값인 계정명이나 숫자값이 URI에 넣어진다.
+
+# Query String & Path Parameter
+1. 일반적인 추천 사항
+- 특정 자원 요청 시 Path Param 사용
+- 정렬 혹은 추가 필터링 데이터는 Query String 사용
+
+2. 다른 추천 사항
+- 필수 데이터 Path Param
+- 선택적 데이터 Query String
+- Path Param이 포함된 URI는 클라이언트가 영향을 받아서 변경 비용 높음
+- Query String은 상대적으로 편하게 확장 가능
+
+3. 조직 추천 사항
+- 회사 또는 팀마다 표준이 존재하므로 표준에 따라 개발한다.
+
+# JSON
+- JavaScript Object Notation
+- 데이터를 교환하는 데 사용
+- XML 보다 가볍고 읽기 쉬움
+- key와 value를 사용한 형태
+- 중괄호로 묶이며, 배열은 대괄호 사용
+- 웹 개발 시 가장 일반적인 데이터 포맷
+- 프론트엔드는 JSON 형식 데이터를 응답받아서 화면 구성
+- 어떤 JSON 데이터로 응답할 지 사전에 정하고 프론트엔드와 백엔드는 거기에 맞게 개발

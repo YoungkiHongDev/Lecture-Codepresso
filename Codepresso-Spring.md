@@ -109,16 +109,6 @@
 - 메소드 파라미터에 @PathVariable 어노테이션을 사용한다.
 - 필수 데이터가 아닌 선택적 데이터의 경우 주로 Query String을 사용한다.
 
-# Query String & Path Parameter
-1. 일반적인 추천 사항
-- 특정 자원 요청 시 Path Param 사용
-- 정렬 혹은 추가 필터링 데이터는 Query String 사용
-
-2. 다른 추천 사항
-- 필수 데이터 Path Param
-- 선택적 데이터 Query String
-- Path Param이 포함된 URI는 클라이언트가 영향을 받아서 변경 비용 높음
-- Query String은 상대적으로 편하게 확장 가능
-
-3. 조직 추천 사항
-- 회사 또는 팀마다 표준이 존재하므로 표준에 따라 개발한다.
+# RestController의 객체 응답
+- 객체를 반환하면 JSON 형식으로 변환하여 데이터가 응답된다.
+- 객체를 JSON 형식으로 변환하는 역할은 Spring이 해준다.
