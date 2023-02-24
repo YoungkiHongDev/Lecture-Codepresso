@@ -291,3 +291,40 @@ https://www.w3schools.com/tags/default.asp
 # RestController의 객체 응답
 - 객체를 반환하면 JSON 형식으로 변환하여 데이터가 응답된다.
 - 객체를 JSON 형식으로 변환하는 역할은 Spring이 해준다.
+
+# HTTP 메소드
+- HTTP 규약 중 하나로서, 특정 자원에 대해 수행하는 행동의 종류를 명시한다. (생성, 조회, 수정, 삭제 등)
+- HTTP 메소드 사용 시 단일 URI로 다양한 행동을 정의할 수 있다.
+- HTTP 메소드는 9개의 메소드가 존재하지만 보통 4~5개를 주로 사용한다.
+- 알맞는 메소드로 처리하지 않아도 상관없지만 설계에 맞추는 것이 권장된다.
+- 종류: GET, POST, PUT, DELETE, PATCH, OPTIONS, TRACE, CONNECT, HEAD
+- 주로 사용되는 메소드: GET, POST, PUT, DELETE
+- GET (자원 조회)
+- POST (자원 생성)
+- PUT (자원 수정)
+- DELETE (자원 삭제)
+
+# 데이터베이스 CRUD
+- DB의 4가지 기본 동작을 CRUD라고 부른다.
+- C (CRETAE)
+- R (Read)
+- U (Update)
+- D (Delete)
+
+# HTTP 메소드 & 데이터베이스 CRUD
+- HTTP 메소드와 데이터베이스 CRUD에서 비슷한 것끼리 대응하여 사용한다.
+- Create -> POST (데이터 저장)
+- Read -> GET (데이터 조회)
+- Update -> PUT (데이터 수정)
+- Delete -> DELETE (데이터 삭제)
+
+# Spring의 HTTP 메소드 구현
+- @RequestMapping(method = GET) 이와 같은 형식을 사용한다. (default는 GET)
+- 요청된 HTTP 메소드에 따라 Java 메소드를 호출한다.
+- 각 Java 메소드에서 HTTP 메소드에 따른 처리를 수행하도록 설계가 권장된다.
+
+# 간소화된 HTTP 메소드 Annotation
+- @RequestMapping(method = GET) -> @GetMapping
+- @RequestMapping(method = POST) -> @PostMapping
+- @RequestMapping(method = PUT) -> @PutMapping
+- @RequestMapping(method = DELETE) -> @ DeleteMapping
