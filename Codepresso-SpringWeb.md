@@ -328,3 +328,18 @@ https://www.w3schools.com/tags/default.asp
 - @RequestMapping(method = POST) -> @PostMapping
 - @RequestMapping(method = PUT) -> @PutMapping
 - @RequestMapping(method = DELETE) -> @ DeleteMapping
+
+# Request Body
+- 게시판 글이나 회원가입 양식 등 크기가 큰 데이터를 보내려면 Query String과 Path Parameter와는 다른 방식이 필요하다.
+- Request Body는 데이터를 저장/수정하는 POST, PUT 메소드에서 사용된다. (GET, DELETE는 Query String과 Path Parameter 주로 사용)
+- Request Body는 다양한 형식의 데이터를 전송할 수 있다. (주로 사용하는건 JSON 형식)
+- 클라이언트 -> JSON 데이터 전송
+- Spring -> JSON 데이터를 Java 객체의 파라미터로 저장
+
+# @RequestBody Annotaion
+- Spring에서 @RequestBody를 HTTP 메소드의 파라미터 앞에 넣어서 RequestBody를 구현한다.
+- Dto 클래스를 만들고 id, title, content 같은 데이터를 받아서 객체로 만든다.
+
+# Request Body를 Postman에서 실습하기
+- URI 입력하는 곳 아래의 Body 메뉴 -> raw 체크 -> 오른쪽에 나오는 데이터 형식 JSON 선택
+- 텍스트 상자 안에 JSON 형식의 데이터를 작성하고 전송하여 결과 확인
