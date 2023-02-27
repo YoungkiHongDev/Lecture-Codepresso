@@ -172,9 +172,9 @@ https://www.w3schools.com/tags/default.asp
 - 이미 많은 사람이 고민했던 특정 상황의 문제 해결을 위해 일반화된 솔루션이 있음 (메신저 서비스 개발 패턴, 웹서비스 개발 패턴, 분석 시스템 개발 패턴)
 - 웹 서비스 개발에 주로 쓰이는 패턴은 SW를 3~4개 계층으로 구분 (Presentation Layer, Application Layer, Business Layer, Data Access Layer)
 - 계층 간에 호출하고 데이터를 주고 받으며 전체 웹 서비스 구성
-- Presentation Layer(@Controller): 클라이언트로부터 요청을 받아 Application Layer에 처리를 위임, Application Layer의 결과를 최종 클라이언트로 전달
-- Application Layer(@Service): 특정 목적을 위한 다양한 비즈니스 로직을 처리
-- Data Access Layer(@Repository): DB에 접근하여 데이터를 저장하거나 조회하는 역할
+- Presentation Layer(@Controller): 클라이언트로부터 요청을 받아 Application Layer에 처리를 위임, Application Layer의 결과를 최종 클라이언트로 전달 (요청과 응답 처리)
+- Application Layer(@Service): 특정 목적을 위한 다양한 비즈니스 로직을 처리 (비즈니스 로직 처리)
+- Data Access Layer(@Repository): DB에 접근하여 데이터를 저장하거나 조회하는 역할 (데이터 저장 조회)
 
 # Spring Controller
 - 계층형 아키텍처의 Presentation Layer에 해당한다.
@@ -343,3 +343,111 @@ https://www.w3schools.com/tags/default.asp
 # Request Body를 Postman에서 실습하기
 - URI 입력하는 곳 아래의 Body 메뉴 -> raw 체크 -> 오른쪽에 나오는 데이터 형식 JSON 선택
 - 텍스트 상자 안에 JSON 형식의 데이터를 작성하고 전송하여 결과 확인
+
+# API 문서
+- API를 사용법을 명세한 문서
+- API는 정보를 주고 받기 위한 약속
+- API는 사용 방법을 알아야 사용 가능
+
+# REST API 문서
+- 프론트엔드에서 호출하기 위한 REST API 정보가 명세된 문서
+- 백엔드 개발자 주도로 프론트엔드 개발자와 함께 설계
+- 프론트엔드 개발자는 REST API 문서에 의존하여 프론트엔드 개발
+- 따라서, 프론트엔드에서 활용할 수 있도록 상세하게 작성 필요
+
+# REST API 문서 내용
+- REST API 설명
+- URI
+- HTTP 메소드
+- Request 파라미터 (필수 파라미터 & 선택 파라미터)
+- Response 데이터 (필수 응답 데이터 & 선택 응답 데이터)
+- 에러코드 및 대응방법
+- 호출 예시
+
+# REST API 문서 활용
+- 프론트엔드 개발자와 백엔드 개발자 모두 REST API 문서를 읽고 이해할 수 있어야함
+- 백엔드 개발자는 프론트엔드를 위해 REST API 문서를 작성할 수 있어야함
+- REST API가 잘 만들어지면 커뮤니케이션 비용 감소
+
+# Spring Service
+- 시스템의 핵심 비즈니스 로직을 구현하는 계층
+- view의 종류(프론트엔드 프레임워크)와 DB의 종류에 영향을 받지 않는 독립적인 계층 (영향받지 않도록 설계)
+
+# Spring Service 예시 - SNS 시스템
+- 컨텐츠 정보 저장: 이미지, 글 등의 컨텐츠 정보 저장
+- 컨텐츠 추천: 사용자 선호 컨텐츠 추천
+- 회원 관련 처리: 회원가입, 로그인, 회원탈퇴 등 회원 정보 처리
+
+# Spring Service 구현
+- @Service 어노테이션을 클래스에 사용
+- 파라미터로 전달된 데이터 검증 작업 수행
+- Repository 계층을 활용하여 DB에 접근 (Service 계층의 단일 메소드가 트랙잭션 단위가 됨)
+- 세부 영역(유저, 글, 댓글, 검색 등)별로 클래스 생성하여 구현
+- 인터페이스의 사용이 권장, 다형성을 활용한 기능 확장 요구가 없으면 일반 클래스 사용
+
+# Spring Service 예시
+- @Controller: UserController, PostController, ReplyController, SearchController
+- @Service: UserService, PostService, ReplyService, SearchService 
+- @Repository: UserRepository, PostRepository, ReplyRepository, SearchRepository
+
+# 객체 의존성 활용
+- 의존성: 하나의 모듈이 다른 모듈을 사용 (클래스, 패키지 등)
+- 일반적으로 다른 객체를 사용하려면 멤버 변수에 new 키워드로 객체 생성하여 참조
+- 생성한 객체에서 메소드를 호출하여 사용
+- 어떤 객체를 생성하여 사용할 것인지 코드 상에 명시 (컴파일 타임 의존성)
+
+# 의존성 주입 DI (Dependency Injection)
+- 객체 생성을 외부에서 대신 수행
+- 활용할 객체에 대한 의존성 설정을 외부에서 대신 수행
+- 활용할 클래스(인터페이스) 타입의 멤버 변수만 선언 후 생성자 구현 (new를 직접하지않음)
+
+# Spring 프레임워크의 객체 생성 및 관리 역할
+- 스프링 프레임워크가 특정 조건을 만나면 객체를 생성
+- 조건 1. 클래스 상단의 Annotation (@Controller, @RestController, @Service 등등)
+- 조건 2. @Configuration 클래스의 @Bean Annotation
+- 조건 3. XML 설정 (최근에는 조건 1, 2를 주로 사용)
+- Component Scan: 객체로 생성할 대상을 검색하는 과정
+- 조건에 따라 객체들의 의존성을 관리한다.
+
+# Spring 프레임워크의 객체 생성 및 관리 역할 예시
+- 스프링이 Controller 어노테이션을 스캔
+- Controller 생성자에서 필요한 객체 스캔
+- 필요한 객체의 클래스에 가서 Service 어노테이션을 스캔하면 스프링이 직접 객체 생성
+- 스프링이 생성한 Service 객체로 생성자에 인자로 넣고 Controller 객체 생성
+
+# Spring IoC 컨테이너
+- 스프링에서 객체의 생성과 관리의 역할을 하는 컴포넌트
+
+# Spring Bean
+- IoC 컨테이너에 의해서 생성되어 관리되는 Java 객체
+
+# 의존성 주입 단계
+- 1. Spring에 의해 객체가 생성되도록 Annotation 설정
+- 2. 사용할 객체를 멤버 변수와 생성자에 추가
+- 3. 객체를 사용
+
+# @Configuration
+- Java 클래스에 @Configuration 어노테이션을 사용 가능
+- @Configuration을 사용한 클래스는 Spring에 의해 설정 정보를 위한 클래스로 활용
+
+# @Bean Annotation
+- @Configuration 클래스 내에 @Bean 메소드로 Bean 생성 가능
+- Bean으로 등록할 객체를 생성 후 리턴
+
+# 의존성 주입 정리
+[Java 소스코드, Controller 클래스, Service 클래스]와 [Spring Framework의 설정 정보 @Controller, @RestController, Service, Bean]을 스프링 내부의 컴포넌트인 Spring IoC 컨테이너에 입력되면 컨테이너가 이것들을 분석하여 Bean을 생성하고 Bean 간의 의존성을 설정한다.
+
+# 의존성 주입 디버깅
+- logging.level.org.springframework.beans = DEBUG
+- 위 코드를 appliction.properties에 작성하고 서버를 실행시키면 콘솔에 세세하게 나온다.
+- 콘솔에서 bean이 생성되고 컨트롤러나 서비스를 연결하는걸 로그로 볼 수 있다.
+
+# 의존성 주입 실습
+- PostDto 클래스 생성, id, title, content, username을 생성자로 받고, getter 메소드를 만듬
+- PostService 클래스 생성, @Service 어노테이션 작성, PostDto 객체를 생성하여 리턴
+- PostController 클래스 생성, @RestController와 @RequestMapping 어노테이션 작성, PostService 객체를 new를 쓰지않고 작성, 생성자에서 PostService 객체를 인자로 받음, 스프링의 IoC 컨테이너에서 @RestController 어노테이션을 스캔하고 생성자에서 PostService 객체 인자를 보고 PostService 클래스로 찾아가서 객체를 직접 생성, 따라서 객체를 스프링에서 생성하여 인자로 받음, 그 후 스프링에서 Controller 객체 또한 생성
+- GET 요청이 들어오면 Controller의 @GetMapping 메소드에서 DTO 객체에 Service 객체에서 리턴한 DTO를 넣고 리턴
+- @Service를 사용하지 않는다면, Configurantion 어노테이션 클래스에서 Bean 어노테이션 메소드로 PostService 객체를 생성할 수 있도록 만듬, 이제 PostService의 Service 어노테이션을 지워도 Bean 메소드에서 PostService 객체를 생성하고 반환하고 있으므로 스프링은 PostService 객체를 Bean으로 만들어 관리, 여기서 만든 Bean을 PostController의 생성자의 인자로 넣어서 PostController가 PostService를 사용할 수 있게 됨
+- 만약 Bean 어노테이션으로도 생성하고 Service 어노테이션으로도 생성하면 2개가 충돌이 나서 에러가 발생
+- 이를 해결하는 가장 간단한 방법은 Bean 어노테이션이 붙은 메소드의 이름을 바꾸면 가능
+- 같은 종류의 Bean을 만들어도 이름이 다르면 여러개 생성이 가능
