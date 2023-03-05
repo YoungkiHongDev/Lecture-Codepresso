@@ -98,3 +98,61 @@ Could not acquire management access for administration 에러를 해결하기 �
 3. Apply
 4. Finish
 5. 생성된 스키마 우클릭 Set as Default Schema 선택하여 기본 스키마로 지정 (이렇게 하면 SQL문 작성 시 스키마 명을 생략할 수 있다.)
+
+# MySQL 테이블 생성 실습
+1. basic-table 우클릭 Create Table
+2. 테이블명을 정하고 캐릭터셋과 컬렉션은 default로 하면 스키마꺼를 상속받는다.
+3. 컬럼을 작성하고 Apply
+4. 생성된 테이블을 우클릭하여 Select Rows Limit 1000 눌러서 조회 테스트
+
+# 테이블 옵션
+- PK: 테이블당 하나만 존재가능한 유니크한 값 (Not Null)
+- NN: Not Null 데이터가 반드시 저장되어야 한다.
+- UQ: 유니크한 값 (Null 가능)
+- UN: 숫자 입력 시 Unsigned 사용
+- AI: Auto Increment 데이터가 늘어날때마다 0부터 1씩 숫자가 늘어난다. (게시물 번호 등에 사용)
+- Default: 기본 값 (날짜 등에 사용)
+
+# 예제 데이터 실습
+> 실습데이터 다운로드 (MySQL SQL scripts)  
+> https://forta.com/books/0672336073/
+
+1. shop 스키마 생성
+2. create.txt 내용으로 Query 입력하여 테이블 생성
+3. populate.txt 내용으로 Query 입력하여 데이터 추가
+
+# CREATE TABLE
+새로운 테이블을 생성한다.
+
+```SQL
+CREATE TABLE table_name
+(
+    column_name1 data_type options,
+    column_name2 data_type options,
+);
+```
+
+# INSERT INTO
+테이블에 새로운 row를 추가한다.
+
+```SQL
+INSERT INTO table_name (column1, column2, column3)
+VALUES (value1, value2, value3);
+
+-- 모든 컬럼에 데이터 입력 시 컬럼 생략 가능
+INSERT INTO table_name
+VALUES (value1, value2, value3);
+```
+
+# SELECT
+테이블의 데이터를 조회한다.
+
+```SQL
+-- 전체 컬럼 조회
+SELECT *
+FROM table_name;
+
+-- 특정 컬럼만 조회
+SELECT column1, column2
+FROM table_name;
+```
