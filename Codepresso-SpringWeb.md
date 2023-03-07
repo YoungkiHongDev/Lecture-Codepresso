@@ -451,3 +451,73 @@ https://www.w3schools.com/tags/default.asp
 - 만약 Bean 어노테이션으로도 생성하고 Service 어노테이션으로도 생성하면 2개가 충돌이 나서 에러가 발생
 - 이를 해결하는 가장 간단한 방법은 Bean 어노테이션이 붙은 메소드의 이름을 바꾸면 가능
 - 같은 종류의 Bean을 만들어도 이름이 다르면 여러개 생성이 가능
+
+# Data Access Layer
+데이터베이스에 접근하여 데이터를 저장하거나 조회하는 레이어이다. 서비스 계층과 데이터베이스 사이의 추상화된 계층이다. 데이터베이스 기술이 변경되면 레이어의 코드는 변경될 수 있지만 서비스 계층의 코드는 변경되지 않는다. 오라클이든 MySQL이든 프레젠테이션 레이어와 애플리케이션 레이어는 영향받지 않는다.
+
+# 데이터 접근 기술
+> JDBC
+
+데이터베이스에 접근하기 위한 Java의 표준 API이다. 로우 레벨의 기술이라 단순 기능까지 모두 코드로 작성하여 코드의 양이 많아진다.
+
+> JDBC Template
+
+JDBC를 효율적으로 사용하기 위한 Spring API이다. JDBC보다 훨씬 더 적은 코드의 양으로 데이터베이스에 접근할 수 있다.
+> SQL Mapper
+
+SQL과 Java 객체를 매핑하는 기술이다. SQL의 input 또는 output을 Java 객체와 매핑한다. Java의 SQL Mapper는 일반적으로 **Mybatis**가 사용된다. 세계적으로 SQL Mapper의 사용률은 떨어지고 있지만, 국내에서는 많은 기업에서 대규모 프로젝트에서 활용하고 있다.
+
+> ORM
+
+RDBMS의 테이블과 Java 객체를 매핑하는 기술이다. ORM Framework가 객체와 테이블을 매핑하며, SQL을 자동으로 생성한다. Java, Spring에서 ORM 적용을 위해 **Hibernate**와 **Spring Data JPA**가 주로 사용되고 있다. 세계적으로 SQL Mapper보다 사용률이 월등히 높고, 국내에서도 사용률이 점점 높아지고 있다.
+
+# Maven
+Java 프로젝트에서 사용되는 빌드 자동화 도구이다 빌드는 소스코드를 실행 가능한 SW 산출물로 만드는 과정인데, 이것을 Maven이 단순화 시켜준다.
+
+> Maven의 주요 기능
+- 프로젝트 구성 및 빌드 관리
+- 라이브러리 의존성 관리
+
+> Maven 라이브러리 의존성 관리
+
+이전에는 외부 라이브러리를 직접 다운받아 설정했지만, Maven을 사용할 때 외부 라이브러리를 명시하면 자동으로 다운로드해준다. **pom.xml**파일의 **dependencies** 태그 안에 사용할 외부 라이브러리를 선언하면 된다.
+
+> Maven Central Repository
+
+Maven에서 관리하는 중앙 Repository이다. pom.xml에 외부 라이브러리 정보를 명시하면 중앙 Repository에 외부 라이브러리를 요청해서 다운로드 받고, 애플리케이션에서 외부 라이브러리를 활용할 수 있도록 설정한다.
+
+> Maven pom.xml
+
+Maven이 프로젝트를 빌드하기 위해서 필요한 정보를 기술하는 XML 파일이다. 프로젝트의 정보, 필요한 라이브러리 의존성 정보, 빌드 단계에서 사용되는 정보 등을 기술한다.
+
+> pom.xml 태그
+1. project: 최상단의 태그
+2. modelVersion: pom.xml 구조의 버전
+3. groupId: 일반적으로 회사 url의 역순으로 설정하며, 프로젝트 간 식별 가능한 고유 이름
+4. artifactId: 실제로 만드는 애플리케이션 산출물의 이름
+5. version: 현재 개발중인 애플리케이션의 버전
+6. dependencis: 하위에 다수의 dependency로 라이브러리 명시
+7. dependency: groupId, artifactId, version 등 외부 라이브러리의 정보 명시
+
+> Maven 의존성 검색 https://mvnrepository.com/
+
+# Mybatis
+Java의 SQL Mapper
+```XML
+<!-- Mybatis 의존성 추가 -->
+<dependency>
+    <groupId>org.mybatis.spring.boot</groupId>
+    <artifactId>mybatis-spring-boot-starter</artifactId>
+    <version>2.2.2</version>
+</dependency>
+```
+
+# H2 Database
+Java의 관계형 데이터베이스 관리 시스템
+```XML
+<!-- H2 Database 의존성 추가 -->
+<dependency>
+    <gropudId>com.h2database</gropudId>
+    <artifactId>h2</artifactId>
+</dependency>
+```
