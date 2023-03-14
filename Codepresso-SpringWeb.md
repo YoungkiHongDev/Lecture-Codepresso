@@ -521,3 +521,56 @@ Java의 관계형 데이터베이스 관리 시스템
     <artifactId>h2</artifactId>
 </dependency>
 ```
+- 경량화된 RDBMS로 메모리에 데이터를 저장 할 수 있다.
+- 별도 설치 없이 Maven 의존성만으로 Spring Boot에서 쓸 수 있다.
+- 테스트용으로 가볍게 활용이 가능하다.
+
+## H2 Database 설정
+1. spring.datasource.driver-class-name=org.h2.Driver  
+DB 연결을 위한 h2 드라이버 사용  
+MySQL의 경우 com.mysql.cj.jdbc.Driver
+Oracle의 경우 oracle.jdbc.driver.OracleDriver
+
+2. spring.datasource.url=jdbc:h2:mem:[DB명]  
+DB 접속을 위한 URL  
+MySQL의 경우 jdbc:mysql://localhost:3306/[DB명]
+PostgreSQL의 경우 jdbc:postgresql://localhost:5432/[DB명]
+
+3. spring.datasource.username=[사용자명]  
+DB에 접속하기 위한 사용자 이름
+
+4. spring.datasource.password=[패스워드]  
+DB에 접속하기 위한 패스워드
+
+5. spring.h2.console.enabled=true  
+h2 웹 콘솔 사용 선언
+
+6. spring.h2.console.path=/h2-console  
+웹 콘솔을 접속할 수 있는 uri 패스 설정 이 경우 /h2-console  
+localhost:8080/h2-console
+
+# Maven & H2 의존성 추가 실습
+1. 프로젝트의 pom.xml을 연다.
+2. dependencies 태그 하위에 Maven과 H2의 의존성을 추가한다.
+3. 저장 후 오른쪽에 m 마크의 아이콘으로 Load Maven Changes가 뜨면 누르고 아래쪽에 진행 바가 없어지기를 기다린다.
+4. 왼쪽 프로젝트 구조에서 External Libraries 안에 추가 되었는지 확인한다.
+
+# Spring 애플리케이션 설정
+Spring 애플리케이션의 구성에 대한 부가적인 정보로 시작 시점에 읽는다.  
+프로젝트 구조에서 src-main-resources 하위에 위치하는 application.properties 파일에 설정 정보를 추가할 수 있으며, application.yaml 파일을 쓰기도 한다.  
+설정 정보는 key=value 형태로 작성한다.
+
+> Spring Boot 설정 공식 문서  
+> https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html
+
+> 예시) 포트 변경 8080 -> 8081  
+> server.port=8081
+
+# Spring의 DB 테이블 및 데이터 초기화
+1. DB 테이블 초기화  
+Spring 프로젝트 구조에서 resources 디렉터리 하위에 schema.sql 파일 생성 후 SQL을 작성한다.  
+ex) CREATE문
+
+2. 데이터 초기화  
+Spring 프로젝트 구조에서 resources 디렉터리 하위에 data.sql 파일 생성 후 SQL을 작성한다.  
+ex) INSERT문
