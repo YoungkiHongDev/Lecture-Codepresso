@@ -499,7 +499,8 @@ Maven이 프로젝트를 빌드하기 위해서 필요한 정보를 기술하는
 6. dependencis: 하위에 다수의 dependency로 라이브러리 명시
 7. dependency: groupId, artifactId, version 등 외부 라이브러리의 정보 명시
 
-> Maven 의존성 검색 https://mvnrepository.com/
+> Maven 의존성 검색  
+> https://mvnrepository.com/
 
 # Mybatis
 Java의 SQL Mapper
@@ -510,6 +511,44 @@ Java의 SQL Mapper
     <artifactId>mybatis-spring-boot-starter</artifactId>
     <version>2.2.2</version>
 </dependency>
+```
+
+## Mybatis 설정
+> mybatis.config-location=classpath:mybatis/mybatis-config.xml
+> - application.properties에 설정하면 Spring이 읽고 수행한다.
+> - 위 설정은 Mybatis의 설정 파일의 위치를 명시한 것이다.
+> - classpath는 경로의 모음을 뜻한다.
+> - resources가 classpath의 경로 중 하나이므로 그 밑의 폴더 안에 파일이 있다는 뜻이다.
+
+> mybatis-config.xml  
+> - Mybatis가 읽는 파일이다.
+> - SQL이 작성된 Mapper 파일의 위치 정보 등 다양한 설정이 가능하다.
+
+> mapper.xml  
+> - mapper 파일은 한 애플케이션에서 여러개가 있을 수 있다.
+> - 일반적으로 테이블마다 혹은 조인된 데이터마다 mapper를 만든다.
+
+> Mybatis 설정 공식문서  
+> https://mybatis.org/mybatis-3/configuration.html
+
+```XML
+<!-- mybatis-config.xml 파일 내용 예시 -->
+<!-- mapper.xml 안에는 DB에 접근하기 위한 SQL문이 들어간다. -->
+<configuration>
+    <mappers>
+        <mapper resource="mybatis/mapper/todo-mapper.xml" />
+    </mappers>
+</configuration>
+```
+
+```XML
+<!-- todo-mapper.xml 파일 내용 예시 -->
+<mapper namespace="com.codepresso.todo.mapper.TodoMapper">
+    <insert id="save">
+        INSERT INTO TODO(CONTENT, ISCOMPLETED)
+        VALUES (#{todo.content}, #{todo.isCompleted});
+    </insert>
+</mapper>
 ```
 
 # H2 Database
@@ -526,28 +565,28 @@ Java의 관계형 데이터베이스 관리 시스템
 - 테스트용으로 가볍게 활용이 가능하다.
 
 ## H2 Database 설정
-1. spring.datasource.driver-class-name=org.h2.Driver  
-DB 연결을 위한 h2 드라이버 사용  
-MySQL의 경우 com.mysql.cj.jdbc.Driver
-Oracle의 경우 oracle.jdbc.driver.OracleDriver
+> spring.datasource.driver-class-name=org.h2.Driver
+> - DB 연결을 위한 h2 드라이버 사용
+> - MySQL의 경우 com.mysql.cj.jdbc.Driver
+> - Oracle의 경우 oracle.jdbc.driver.OracleDriver
 
-2. spring.datasource.url=jdbc:h2:mem:[DB명]  
-DB 접속을 위한 URL  
-MySQL의 경우 jdbc:mysql://localhost:3306/[DB명]
-PostgreSQL의 경우 jdbc:postgresql://localhost:5432/[DB명]
+> spring.datasource.url=jdbc:h2:mem:[DB명]
+> - DB 접속을 위한 URL
+> - MySQL의 경우 jdbc:mysql://localhost:3306/[DB명]
+> - PostgreSQL의 경우 jdbc:postgresql://localhost:5432/[DB명]
 
-3. spring.datasource.username=[사용자명]  
-DB에 접속하기 위한 사용자 이름
+> spring.datasource.username=[사용자명]
+> - DB에 접속하기 위한 사용자 이름
 
-4. spring.datasource.password=[패스워드]  
-DB에 접속하기 위한 패스워드
+> spring.datasource.password=[패스워드]
+> - DB에 접속하기 위한 패스워드
 
-5. spring.h2.console.enabled=true  
-h2 웹 콘솔 사용 선언
+> spring.h2.console.enabled=true
+> - h2 웹 콘솔 사용 선언
 
-6. spring.h2.console.path=/h2-console  
-웹 콘솔을 접속할 수 있는 uri 패스 설정 이 경우 /h2-console  
-localhost:8080/h2-console
+> spring.h2.console.path=/h2-console
+> - 웹 콘솔을 접속할 수 있는 uri 패스 설정 이 경우 /h2-console
+> - localhost:8080/h2-console
 
 # Maven & H2 의존성 추가 실습
 1. 프로젝트의 pom.xml을 연다.
