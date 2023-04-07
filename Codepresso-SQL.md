@@ -156,3 +156,47 @@ FROM table_name;
 SELECT column1, column2
 FROM table_name;
 ```
+
+# WHERE
+원하는 조건으로 데이터를 필터링한다.  
+SELECT, UPDATE, DELETE 문에서 사용 가능하다.
+
+```SQL
+-- Customers 테이블에서 성별이 여성인 사람만 조회
+SELECT *
+FROM Customers
+WHERE gender = 'Female';
+```
+
+# 비교 연산자
+- 같다: =
+- 같지 않다: <>
+- 크다: >
+- 작다: <
+- 크거나 같다: >=
+- 작거나 같다: <=
+
+# 조건의 결합
+여러 조건들을 결합하여 데이터를 필터링한다.  
+
+## AND 연산자
+주어진 모든 조건을 모두 만족시키는 데이터만 조회한다.  
+
+```SQL
+-- 서울에 사는 남성 고객의 데이터
+SELECT *
+FROM Customers
+WHERE Address = 'Seoul'
+AND gender = 'Male';
+```
+
+## OR 연산자
+주어진 조건 중 하나라도 만족시키는 데이터만 조회한다.
+
+```SQL
+-- 서울 혹은 부산에 사는 고객의 데이터
+SELECT *
+FROM Customers
+WHERE Address = 'Seoul'
+OR Address = 'Busan';
+```
