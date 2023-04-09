@@ -200,3 +200,59 @@ FROM Customers
 WHERE Address = 'Seoul'
 OR Address = 'Busan';
 ```
+
+# ORDER BY
+특정 컬럼을 기준으로 내림차순 혹은 오름차순하여 데이터를 정렬한다.  
+정렬 조건은 1개 이상 할 수 있다.  
+- ASC : 오름차순 (default)
+- DESC : 내림차순
+
+```SQL
+-- 고객 데이터를 아이디 순으로 내림차순 정렬
+SELECT *
+FROM Customers
+ORDER BY customer_id DESC;
+
+-- 고객 데이터를 아이디 순으로 오름차순, 전화번호로 내림차순 정렬
+SELECT *
+FROM Customers
+ORDER BY customer_id ASC, phone_number DESC;
+```
+
+# LIMIT & OFFSET
+- LIMIT : 조회된 결과 값의 개수를 제한한다.
+- OFFSET : LIMIT과 함께 자주 쓰는 명령으로 몇번째 행부터 출력할지 처리한다.
+
+```SQL
+-- 고객 데이터에서 나이가 가장 많은 3명 조회
+SELECT *
+FROM Customers
+ORDER BY age DESC LIMIT 3;
+
+-- 고객 데이터에서 나이가 3, 4번째 많은 사람 조회
+SELECT *
+FROM Customers
+ORDER BY age DESC LIMIT 2 OFFSET 3;
+```
+
+# IN 연산자
+조회하려는 데이터에서 원하는 데이터를 포함한 데이터를 필터링 할 수 있는 명령이다.
+
+```SQL
+-- 고객 데이터에서 '서울' 혹은 '인천'에 거주하는 고객 조회
+SELECT *
+FROM Customers
+ORDER BY address IN ('Seoul', 'Incheon');
+```
+
+# BETWEEN 연산자
+조회하려는 데이터에서 주어진 범위에 대한 조건에 해당하는 데이터를 필터링 할 수 있는 명령이다.  
+숫자, 날짜, 문자 데이터에 사용이 가능하다.  
+주어진 범위를 모두 포함한다.  
+
+```SQL
+-- 상품 데이터에서 상품 번호가 1000번 ~ 1010번인 데이터 조회
+SELECT *
+FROM Products
+WHERE product_number BETWEEN 1000 AND 1010;
+```
