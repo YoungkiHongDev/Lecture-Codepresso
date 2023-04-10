@@ -256,3 +256,29 @@ SELECT *
 FROM Products
 WHERE product_number BETWEEN 1000 AND 1010;
 ```
+
+# LIKE 연산자
+문자열 데이터 안에서 특정 문자열로 시작 또는 끝나거나 포함된 데이터를 검색하기 위해 사용한다.  
+'%' 기호를 사용하여 원하는 방식으로 검색할 수 있다.
+
+```SQL
+-- "A"로 시작하는 학생의 이름 검색
+SELECT name
+FROM student
+WHERE name LIKE 'A%';
+
+-- "A"로 끝나는 학생의 이름 검색
+SELECT name
+FROM student
+WHERE name LIKE '%A';
+
+-- "A"가 포함된 학생의 이름 검색
+SELECT name
+FROM student
+WHERE name LIKE '%A%';
+
+-- "A로 시작하고 D로 끝나는 학생의 이름 검색"
+SELECT name
+FROM student
+WHERE name LIKE 'A%D';
+```
