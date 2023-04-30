@@ -551,6 +551,37 @@ Java의 SQL Mapper
 </mapper>
 ```
 
+```Java
+// MyBatis Mapper 예시
+@Mapper
+public interface TodoMapper {
+    void save(@Param("todo")) Todo todo);
+}
+```
+
+## Mybatis Mapper의 동작
+```mermaid
+graph LR;
+A[Application Layer Service]
+B[Mapper 인터페이스]
+C[Mapper xml SQL]
+D[(Database)]
+E[DTO]
+A --> B
+B --> A
+B --> C
+C --> B
+C --> D
+D --> C
+E <--> B
+E <--> C
+```
+
+- Application 레이어의 Service에서 Mapper 인터페이스를 호출한다.
+- 호출된 Mapper 인터페이스의 메소드에 해당하는 Mapper.xml의 SQL문이 실행된다.
+- Mapper 인터페이스와 Mapper.xml 사이에서 DTO 혹은 단일 value를 주고 받는다.
+- 이것들은 모두 Mybatis에 의해 관리된다.
+
 # H2 Database
 Java의 관계형 데이터베이스 관리 시스템
 ```XML
